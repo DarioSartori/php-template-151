@@ -38,7 +38,7 @@ switch($_SERVER["REQUEST_URI"]) {
 			$factory->getIndexController()->greet($matches[1]);
 			break;
 		}
-		else if (preg_match("/hangman\?length\=/", $_SERVER["REQUEST_URI"])){
+		else if (preg_match("/blog\?length\=/", $_SERVER["REQUEST_URI"])){
 			$cnt = $factory->getBlogController();
 			$cnt->getWord($_GET["length"]);
 			break;
