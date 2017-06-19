@@ -1,10 +1,5 @@
-
-{% extends 'base.html.twig' %}
+{%  extends 'base.html.twig' %}
 {% block content %}
 	Das kommt aus meinem ersten Template<br />
-	Hello <span id="greeting-name">{{ name }}</span>
-        <a href="https://www.google.ch">Weiter</a>
-{% endblock %} 
-{% block title %}
-	{{ parent() }} - Was für eine Seite
-{% endblock %} 
+	Hallo {{ name }}
+{% endblock %}

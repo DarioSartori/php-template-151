@@ -1,0 +1,24 @@
+{%  extends 'base.html.twig' %}
+{% block title %}
+	{{ parent() }} - Register
+{% endblock %}
+{% block content %}
+	<form method="POST" class="form">
+		<label>
+			Username:
+			<input type="text" name="username" value="{{ username }}">
+		</label><br />
+		<label>
+			Email:
+			<input type="email" name="email" value="{{ email }}"/>
+		</label><br />
+		<label>
+			Passwort:
+			<input type="password" name="password" />
+		</label>
+		<div class="error">{{ error }}</div>
+		<input type="hidden" name="registercsrf" value="{{ registerCsrf }}">
+		<input type="submit" name="register" value="Register" />
+	
+	</form>
+{% endblock %}

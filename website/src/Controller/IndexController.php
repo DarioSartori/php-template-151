@@ -1,29 +1,28 @@
 <?php
-
-namespace mineichen\Controller;
-
-use mineichen\SimpleTemplateEngine;
-
-class IndexController 
+namespace DarioSartori\Controller;
+use DarioSartori\SimpleTemplateEngine;
+class IndexController
 {
-  /**
-   * @var mineichen\SimpleTemplateEngine Template engines to render output
-   */
-  private $template;
-  
-  /**
-   * @param mineichen\SimpleTemplateEngine
-   */
-  public function __construct(\Twig_Environment $template)
-  {
-     $this->template = $template;
-  }
+	/**
+	 * @var ihrname\SimpleTemplateEngine Template engines to render output
+	 */
+	private $template;
 
-  public function homepage() {
-    echo "INDEX";
-  }
+	/**
+	 * @param ihrname\SimpleTemplateEngine
+	 */
+	public function __construct(\Twig_Environment $template)
+	{
+		$this->template = $template;
+	}
+	public function homepage() {
+		echo $this->template->render("base.html.twig");
+	}
+	public function greet($name) {
+		echo $this->template->render("hello.html.twig", ["name" => $name]);
+	}
 
-  public function greet($name) {
-  	echo $this->template->render("hello.html.twig", ["name" => $name]);
-  }
+	public function showIndex($session = "") {
+		echo $this->template->render("index.html.twig", ["session" => $session]);
+	}
 }
