@@ -1,22 +1,22 @@
 {
-    "name": "mineichen/Datenbankprojekt",
+    "name": "DarioSartori/Datenbankprojekt",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "mineichen\\": "src/"
+            "DarioSartori\\": "src/"
         }
     },
     "require": {
         "swiftmailer/swiftmailer": "v5.4.*",
         "twig/twig": "~2.0"
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "mineichen\\": "test/"
-        }
-    },
-    "require-dev": {
-        "phpunit/phpunit": "*",
-        "facebook/webdriver": "1.4.1"
+        },
+   "autoload-dev": {
+       "psr-4": {
+           "DarioSartori\\": "test/"
+       }
+   },
+   "require-dev": {
+       "phpunit/phpunit": "*",
+       "facebook/webdriver": "1.4.1"
     }
 }

@@ -1,9 +1,14 @@
 <?php
 error_reporting(E_ALL);
 session_start();
+
 require_once("../vendor/autoload.php");
+require_once("../src/Factory.php");
+use DarioSartori\Service\Login;
 $factory = DarioSartori\Factory::createFromIniFile(__DIR__. "/../config.ini");
+
 $loginService = $factory->getLoginService();
+
 switch($_SERVER["REQUEST_URI"]) {
 	case "/":
 		$factory->getIndexController()->homepage();

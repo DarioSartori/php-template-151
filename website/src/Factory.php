@@ -1,4 +1,5 @@
 <?php
+
 namespace DarioSartori;
 class Factory{
 	private $config;
@@ -43,7 +44,7 @@ class Factory{
 				);
 	}
 	public function getLoginService() {
-		return new Service\Login\LoginPdoService($this->getPdo());
+		return new \Service\Login\LoginPdoService($this->getPdo());
 	}
 	public function getBlogService() {
 		return new Service\Blog\BlogPdoService($this->getPdo());

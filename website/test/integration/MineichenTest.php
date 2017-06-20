@@ -14,9 +14,9 @@ use Facebook\WebDriver\WebDriverCapabilities;
  * Run Tests with:
  * docker-compose run --rm fpm ./vendor/phpunit/phpunit/phpunit
  * 
- * @author mineichen
+ * @author DarioSartori
  */
-class MineichenTest extends TestCase {
+class DarioSartoriTest extends TestCase {
 
     /**
      * @var \RemoteWebDriver
