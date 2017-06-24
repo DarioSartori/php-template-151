@@ -2,6 +2,7 @@
 namespace DarioSartori\Controller;
 use DarioSartori\SimpleTemplateEngine;
 use DarioSartori\Service\Blog\BlogService;
+use DarioSartori\AntiforgeryTokenManager;
 class BlogController 
 {
   /**
@@ -15,12 +16,12 @@ class BlogController
   /**
    * @param ihrname\SimpleTemplateEngine
    */
-  public function __construct(\Twig_Environment $template, BlogService $blogService, $factory, \AntiforgeryTokenManager $antiforgeryTokenManager)
+  public function __construct(\Twig_Environment $template, BlogService $blogService, $factory, AntiforgeryTokenManager $antiforgeryTokenManager)
   {
      $this->template = $template;
      $this->blogService = $blogService;
      $this->factory = $factory;
-     $this->$antiforgeryTokenManager = $antiforgeryTokenManager;
+     $this->antiforgeryTokenManager = $antiforgeryTokenManager;
   }
   
   public function showBlog(){  	

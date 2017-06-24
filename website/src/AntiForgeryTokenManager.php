@@ -1,5 +1,6 @@
 <?php
 namespace DarioSartori;
+
 class AntiforgeryTokenManager
 {
 	private $session;

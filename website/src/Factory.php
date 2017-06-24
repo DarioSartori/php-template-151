@@ -1,8 +1,13 @@
 <?php
 
 namespace DarioSartori;
+
+require_once('AntiForgeryTokenManager.php');
+
 class Factory{
 	private $config;
+	private $session = null;
+	
 	public static function createFromIniFile($filename)
 	{
 		return new Factory(
@@ -73,6 +78,7 @@ class Factory{
 	{
 		$loader = new \Twig_Loader_Filesystem(__DIR__."/../templates/");
 		$twig = new \Twig_Environment($loader);
+		$this->getSession();
 		$twig->addGlobal('SESSION', $_SESSION);
 		return $twig;
 	}

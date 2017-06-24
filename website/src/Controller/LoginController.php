@@ -3,6 +3,7 @@ namespace DarioSartori\Controller;
 
 use DarioSartori\SimpleTemplateEngine;
 use DarioSartori\Service\Login\LoginService;
+use DarioSartori\AntiforgeryTokenManager;
 
 class LoginController
 {
@@ -23,11 +24,12 @@ class LoginController
 	/**
 	 * @param DarioSartori\SimpleTemplateEngine
 	 */
-	public function __construct(\Twig_Environment $template, LoginService $loginService, $factory, \AntiforgeryTokenManager $antiforgeryTokenManager)
+	public function __construct(\Twig_Environment $template, LoginService $loginService, $factory, AntiforgeryTokenManager $antiforgeryTokenManager)
 	{
 		$this->template = $template;
 		$this->loginService = $loginService;
 		$this->factory = $factory;
+		$this->antiforgeryTokenManager = $antiforgeryTokenManager;
 	}
 	public function showLogin($username = "", $error = "")
 	{
