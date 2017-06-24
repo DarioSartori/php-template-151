@@ -1,5 +1,6 @@
 <?php
 namespace DarioSartori\Service\Login;
+
 class LoginPdoService implements LoginService
 {
 	private $pdo;
@@ -7,15 +8,15 @@ class LoginPdoService implements LoginService
 	{
 		$this->pdo = $pdo;
 	}
-	public function authenticate($email, $password)
+	public function authenticate($username, $password)
 	{
-		$stmt = $this->pdo->prepare("SELECT * FROM login WHERE email=? AND password=?");
-		$stmt->bindValue(1, $email);
+		$stmt = $this->pdo->prepare("SELECT * FROM login WHERE username=? AND password=?");
+		$stmt->bindValue(1, $username);
 		$stmt->bindValue(2, $password);
 		$stmt->execute();
 			
 		if($stmt->rowCount() == 1) {
-			$_SESSION["email"] = $email;
+			$_SESSION["username"] = $username;
 			return true;
 		} else {
 			return false;

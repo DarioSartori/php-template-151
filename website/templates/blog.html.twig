@@ -3,5 +3,42 @@
 	{{ parent() }} - Blog
 {% endblock %}
 {% block content %}
-<p>This is going to be the Blog</p>
+<button class="upload" id="openModal">+</button>
+
+<div id="uploadmodal" class="modal">
+	<div class="modal-content">
+		<form method="POST" class="form">
+        	<span class="close">&times;</span>
+            <h3>Upload Post</h3>
+            <label>
+             Title: <input type="text" name="title" value="{{ title }}"/>
+            <input type="file" accept="image/*" name="image" value="{{ image }}" />
+            </label>
+            <br/>	
+        	<button class="upload" name="upload" value="upload">upload</button>
+  		</form>
+  	</div>
+</div>
+
+<script>
+var modal = document.getElementById('uploadmodal');
+var btn = document.getElementById("openModal");
+var closeBtn = document.getElementsByClassName("close")[0];
+
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+closeBtn.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+} 
+</script>
+
+
 {% endblock %}

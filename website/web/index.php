@@ -30,12 +30,22 @@ switch($_SERVER["REQUEST_URI"]) {
 		}
 		break;
 	case "/logout":
+		echo '<script>console.log("Your stuff here")</script>';
 		$cnt = $factory->getLoginController();
 		$cnt->logout();
 		break;
 	case "/blog":
 		$cnt = $factory->getBlogController();
 		$cnt->showBlog();
+		break;
+	case "/upload":
+		$cnt = $factory->getBlogController();
+		if ($_SERVER["REQUEST_METHOD"] === "POST") {
+			$cnt->upload($_POST);
+		} else	{
+			echo '<script>console.log("Your stuff here")</script>';
+			$cnt->showBlog();
+		}
 		break;
 	default:
 		$matches = [];

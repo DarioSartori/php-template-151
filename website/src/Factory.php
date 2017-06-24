@@ -33,20 +33,24 @@ class Factory{
 		return new Controller\LoginController($this->getTwigEngine(), $this->getLoginService(), $this);
 	}
 
-	public function getBlogController(){
+	public function getBlogController()
+	{
 		return new Controller\BlogController($this->getTwigEngine(), $this->getBlogService(), $this);
 	}
-	public function getPdo() {
+	public function getPdo() 
+	{
 		return new \PDO("mysql:host=mariadb;dbname=blog;charset=utf8",
 				$this->config["database"]["user"],
 				"my-secret-pw",
 				[\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]
 				);
 	}
-	public function getLoginService() {
-		return new \Service\Login\LoginPdoService($this->getPdo());
+	public function getLoginService() 
+	{
+		return new Service\Login\LoginPdoService($this->getPdo());
 	}
-	public function getBlogService() {
+	public function getBlogService() 
+	{
 		return new Service\Blog\BlogPdoService($this->getPdo());
 	}
 

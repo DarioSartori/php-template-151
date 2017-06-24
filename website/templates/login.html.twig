@@ -6,18 +6,17 @@
 {% if SESSION.LoggedIn != true %}
 <form method="POST" class="form">
 	<label>
-		Email:
-		<input type="email" name="email" value="{{ email }}"/>
-	</label><br />
+		Username:
+		<input type="text" name="username" />
+	</label>
 	<label>
 		Passwort:
 		<input type="password" name="password" />
 	</label>
 	<div class="error">{{ error }}</div>
 	<input type="hidden" name="logincsrf" value="{{ loginCsrf }}">
-	<input type="submit" name="login" value="Login" />
+	<input class="link" type="submit" name="login" value="Login" />
 </form>
 {% else %}
-	<p>You are already logged in. Click <a href="/blog">here</a> to change to the game!</p>
 {% endif %}
 {% endblock %}

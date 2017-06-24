@@ -1,7 +1,9 @@
 <?php
 namespace DarioSartori\Controller;
+
 use DarioSartori\SimpleTemplateEngine;
 use DarioSartori\Service\Login\LoginService;
+
 class LoginController
 {
 	/**
@@ -25,10 +27,10 @@ class LoginController
 		$this->loginService = $loginService;
 		$this->factory = $factory;
 	}
-	public function showLogin($email = "", $error = "")
+	public function showLogin($username = "", $error = "")
 	{
 		$csrf = $this->factory->generateCsrf("login");
-		echo $this->template->render("login.html.twig", ["loginCsrf" => $csrf, "email" => $email, "error" => $error]);
+		echo $this->template->render("login.html.twig", ["loginCsrf" => $csrf, "username" => $username, "error" => $error]);
 	}
 
 	public function showRegister($email = "", $username = "", $error = "")
@@ -40,35 +42,35 @@ class LoginController
 
 	public function login(array $data)
 	{
-		if (!array_key_exists("email", $data) OR !array_key_exists("password", $data)) {
+		if (!array_key_exists("username", $data) OR !array_key_exists("password", $data)) {
 			$this->showLogin();
 			return;
 		}
 		 
 		$error = "";
-		if(!isset($data["email"]) || trim($data["email"] == ''))
+		if(!isset($data["username"]) || trim($data["username"] == ''))
 		{
-			$error = $error." Please enter a email!";
+			$error = $error." Please enter a username!";
 		}
 		if(!isset($data["password"]) || trim($data["password"] == ''))
 		{
 			$error = $error." Please enter a password!";
 		}
-		if(!$this->loginService->authenticate($data["email"], $data["password"]) && (!isset($error) || trim($error == '')))
+		if(!$this->loginService->authenticate($data["username"], $data["password"]) && (!isset($error) || trim($error == '')))
 		{
-			$error = $error ." Email or password is wrong!";
+			$error = $error ." Username or password is wrong!";
 		}
 		 
 		if(!isset($error) || trim($error == '')) {
 			session_regenerate_id();
-			$_SESSION["email"] = $data["email"];
+			$_SESSION["username"] = $data["username"];
 			$_SESSION["LoggedIn"] = true;
 			header("Location: /blog");
 			echo $this->template->render("blog.html.twig", [
-					"email" => $data["email"]
+					"username" => $data["username"]
 			]);
 		} else {
-			echo $this->showLogin($data["email"], $error);
+			echo $this->showLogin($data["username"], $error);
 		}
 	}
 

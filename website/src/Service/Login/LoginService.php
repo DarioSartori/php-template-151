@@ -1,5 +1,7 @@
 <?php
+
 namespace DarioSartori\Service\Login;
+
 interface LoginService
 {
 	public function authenticate($username, $password);
