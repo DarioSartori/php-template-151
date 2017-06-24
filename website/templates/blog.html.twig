@@ -7,15 +7,16 @@
 
 <div id="uploadmodal" class="modal">
 	<div class="modal-content">
-		<form method="POST" class="form">
-        	<span class="close">&times;</span>
+		<form method="POST" class="form" enctype=multipart/form-data>
             <h3>Upload Post</h3>
             <label>
-             Title: <input type="text" name="title" value="{{ title }}"/>
+             Title: <input type="text" name="title" value="{{ imageTitle }}"/>
             <input type="file" accept="image/*" name="image" value="{{ image }}" />
             </label>
-            <br/>	
-        	<button class="upload" name="upload" value="upload">upload</button>
+            <br/>
+            <input type="hidden" id="antiforgeryToken" name="antiforgeryToken" value="{{ antiforgeryToken }}" />	
+        	<input type="submit" class="link" name="upload" value="Upload"></input>
+			<div class="error">{{ error }}</div>
   		</form>
   	</div>
 </div>
@@ -23,15 +24,15 @@
 <script>
 var modal = document.getElementById('uploadmodal');
 var btn = document.getElementById("openModal");
-var closeBtn = document.getElementsByClassName("close")[0];
+//var closeBtn = document.getElementsByClassName("close")[0];
 
 btn.onclick = function() {
     modal.style.display = "block";
 }
 
-closeBtn.onclick = function() {
-    modal.style.display = "none";
-}
+//closeBtn.onclick = function() {
+//    modal.style.display = "none";
+//}
 
 window.onclick = function(event) {
     if (event.target == modal) {

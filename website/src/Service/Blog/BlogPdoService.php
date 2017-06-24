@@ -13,11 +13,11 @@ class BlogPdoService implements BlogService
 		$stmt->execute();
 		return $stmt->fetch()["post"];
 	}
-	public function uploadPost($title, $image)
+	public function uploadPost($imageTitle, $image)
 	{
 		echo "upload";
 		$stmt = $this->pdo->prepare("INSERT INTO post (Title, Image, Upvotes) VALUES (?, ?, 0)");
-		$stmt->bindValue(1, $title);
+		$stmt->bindValue(1, $imageTitle);
 		$stmt->bindValue(2, $image);
 		if($stmt->execute())
 		{

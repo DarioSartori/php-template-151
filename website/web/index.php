@@ -30,7 +30,6 @@ switch($_SERVER["REQUEST_URI"]) {
 		}
 		break;
 	case "/logout":
-		echo '<script>console.log("Your stuff here")</script>';
 		$cnt = $factory->getLoginController();
 		$cnt->logout();
 		break;
@@ -39,11 +38,11 @@ switch($_SERVER["REQUEST_URI"]) {
 		$cnt->showBlog();
 		break;
 	case "/upload":
+		echo '<script>console.log("Upload")</script>';
 		$cnt = $factory->getBlogController();
 		if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			$cnt->upload($_POST);
 		} else	{
-			echo '<script>console.log("Your stuff here")</script>';
 			$cnt->showBlog();
 		}
 		break;
@@ -51,11 +50,6 @@ switch($_SERVER["REQUEST_URI"]) {
 		$matches = [];
 		if(preg_match("|^/hello/(.+)$|", $_SERVER["REQUEST_URI"], $matches)) {
 			$factory->getIndexController()->greet($matches[1]);
-			break;
-		}
-		else if (preg_match("/blog\?length\=/", $_SERVER["REQUEST_URI"])){
-			$cnt = $factory->getBlogController();
-			$cnt->getWord($_GET["length"]);
 			break;
 		}
 		else {

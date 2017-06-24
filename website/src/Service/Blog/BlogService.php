@@ -3,5 +3,5 @@ namespace DarioSartori\Service\Blog;
 interface BlogService
 {
 	public function getPosts();
-	public function uploadPost($title, $image);
+	public function uploadPost($imageTitle, $image);
 }

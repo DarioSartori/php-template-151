@@ -10,25 +10,24 @@ class BlogController
   private $template;
   private $blogService;
   private $factory;
+  private $antiforgeryTokenManager;
   
   /**
    * @param ihrname\SimpleTemplateEngine
    */
-  public function __construct(\Twig_Environment $template, BlogService $blogService, $factory)
+  public function __construct(\Twig_Environment $template, BlogService $blogService, $factory, \AntiforgeryTokenManager $antiforgeryTokenManager)
   {
      $this->template = $template;
      $this->blogService = $blogService;
      $this->factory = $factory;
+     $this->$antiforgeryTokenManager = $antiforgeryTokenManager;
   }
   
-  public function showBlog(){
-  	echo $this->template->render("blog.html.twig");
+  public function showBlog(){  	
+  	$antiforgeryToken = $this->antiforgeryTokenManager->generateNewToken();
+  	echo $this->template->render("blog.html.twig", ["antiforgeryToken" => $antiforgeryToken]);
   }
   
-  public function getPosts(){
-  	$posts = "Sorry, hadn't enough time to make the blog. Here are some Pictures: ".$this->blogService->getPosts();
-  	echo $this->template->render("blog.html.twig", ["posts" => $posts]);
-  }
   
   public function upload(array $data){
   	$error = "";
@@ -47,6 +46,6 @@ class BlogController
   		$this->showBlog();
   		return;
   	}
-  	echo $this->showRegister($data["title"], $data["image"], $error);
+  	echo $this->showBlog($data["title"], $data["image"], $error);
   }
 }

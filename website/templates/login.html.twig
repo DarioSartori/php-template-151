@@ -14,8 +14,8 @@
 		<input type="password" name="password" />
 	</label>
 	<div class="error">{{ error }}</div>
-	<input type="hidden" name="logincsrf" value="{{ loginCsrf }}">
-	<input class="link" type="submit" name="login" value="Login" />
+	<input type="hidden" id="antiforgeryToken" name="antiforgeryToken" value="{{ antiforgeryToken }}" />
+	<input type="submit" name="login" value="Login" />
 </form>
 {% else %}
 {% endif %}

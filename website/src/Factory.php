@@ -13,6 +13,21 @@ class Factory{
 	{
 		$this->config = $config;
 	}
+	
+	public function getSession()
+	{
+		if ($this->session == null)
+		{
+			$this->session = new Session();
+		}
+		return $this->session;
+	}
+	
+	public function getAntiforgeryTokenManager()
+	{
+		return new AntiforgeryTokenManager($this->getSession());
+	}
+	
 	public function getTemplateEngine() {
 		return new SimpleTemplateEngine(__DIR__."/../templates/");
 	}
@@ -30,12 +45,12 @@ class Factory{
 				);
 	}
 	public function getLoginController(){
-		return new Controller\LoginController($this->getTwigEngine(), $this->getLoginService(), $this);
+		return new Controller\LoginController($this->getTwigEngine(), $this->getLoginService(), $this, $this->getAntiforgeryTokenManager());
 	}
 
 	public function getBlogController()
 	{
-		return new Controller\BlogController($this->getTwigEngine(), $this->getBlogService(), $this);
+		return new Controller\BlogController($this->getTwigEngine(), $this->getBlogService(), $this, $this->getAntiforgeryTokenManager());
 	}
 	public function getPdo() 
 	{
@@ -62,12 +77,6 @@ class Factory{
 		return $twig;
 	}
 
-	public function generateCsrf($csrfName)
-	{
-		$csrf = $this->generateString(50);
-		$_SESSION[$csrfName . "csrf"] = $csrf;
-		return $csrf;
-	}
 
 	private function generateString($length)
 	{
